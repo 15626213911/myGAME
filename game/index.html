@@ -2,7 +2,7 @@
 <head>
          <meta charset="UTF-8" />
          <title>exam1</title>
-		 <script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.0/build/phaser.js"></script>
+		 <script src="phaser.js"></script>
 		 <style type="text/css">
 		 	#wrapper{
 		 		position: relative;
@@ -379,7 +379,6 @@ var mainState = {
 
 		if (!this.player.alive || !this.player.inCamera ) {
 			this.player.alive = false;
-			game.camera.shake(0.002,500);
 			mainState.player.body.velocity.x = 0;
 			clearInterval(this.scoreTimer);
 			clearInterval(this.breathTimer);
