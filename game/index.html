@@ -379,7 +379,7 @@ var mainState = {
 
 		if (!this.player.alive || !this.player.inCamera ) {
 			this.player.alive = false;
-			game.camera.fade(0xff1111,500,false,0.2);
+			//game.camera.fade(0xff1111,500,false,0.2);
 			game.camera.shake(0.002,500);
 			mainState.player.body.velocity.x = 0;
 			clearInterval(this.scoreTimer);
