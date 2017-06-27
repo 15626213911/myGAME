@@ -244,7 +244,7 @@ var mainState = {
 		this.ball8 = this.createFireBall(3536,128);
 		this.ball9 = this.createFireBall(3616,128);
 		this.ball10 = this.createFireBall(3648,128);
-		this.ball11 = this.createFireBall(3680,128);
+		// this.ball11 = this.createFireBall(3680,128);
 		this.ball12 = this.createFireBall(3856,128);
 		this.ball13 = this.createFireBall(3888,128);
 		this.ball14 = this.createFireBall(4560,48);
@@ -261,7 +261,7 @@ var mainState = {
 		this.ball8.exists = false;
 		this.ball9.exists = false;
 		this.ball10.exists = false;
-		this.ball11.exists = false;
+		// this.ball11.exists = false;
 		this.ball12.exists = false;
 		this.ball13.exists = false;
 		this.ball14.exists = false;
@@ -305,7 +305,7 @@ var mainState = {
 	    this.createPlayer();
 	    this.createEnemy();  
 
-	    this.bgm = game.add.audio('bgm');
+	    this.bgm = game.add.audio('bgm',1,true);
 	    this.bgm.play();
 	    this.info = document.getElementsByClassName('info-board')[0];
 	    this.info.style.visibility = 'visible';
@@ -313,9 +313,9 @@ var mainState = {
 	    this.breathBoard = this.info.getElementsByClassName('breath')[0];
 	    this.score = 0;
 	    this.scoreTimer = setInterval(function(){
-	    	mainState.score++;
-	    	mainState.scoreBoard.innerHTML = mainState.score;
-	    	console.log(mainState.score);
+	    mainState.score++;
+	    mainState.scoreBoard.innerHTML = mainState.score;
+
 	    },1000);
 	    this.breath = 100;
 	    this.breathTimer = setInterval(function(){
@@ -323,7 +323,8 @@ var mainState = {
 	    		mainState.breath++;		    		
 	    	}
 	    	mainState.breathBoard.innerHTML = mainState.breath;
-	    },1000)
+	    },200);
+
 	    //Input操控
 	    this.cursors = game.input.keyboard.createCursorKeys();
 	    this.spaceButton = game.input.keyboard.addKey(Phaser.KeyCode.Z);	
@@ -360,7 +361,7 @@ var mainState = {
 			this.ball8.exists = true;
 			this.ball9.exists = true;
 			this.ball10.exists = true;
-			this.ball11.exists = true;
+			// this.ball11.exists = true;
 			this.ball12.exists = true;
 			this.ball13.exists = true;
 		}
@@ -379,6 +380,8 @@ var mainState = {
 
 		if (!this.player.alive || !this.player.inCamera ) {
 			this.player.alive = false;
+			// game.camera.fade(0xff1111,500,false,0.2);
+			// game.camera.shake(0.002,500);
 			mainState.player.body.velocity.x = 0;
 			clearInterval(this.scoreTimer);
 			clearInterval(this.breathTimer);
