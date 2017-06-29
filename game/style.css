@@ -1,0 +1,118 @@
+		 	#wrapper{
+		 		position: relative;
+		 		margin: 20px auto;
+		 		width: 640px;
+		 		color: #fff;
+		 	}
+		 	.menu-board{
+		 		position: absolute;
+		 		margin-left: -90px;
+		 		top: 75%;
+		 		left: 50%;
+		 		width: 180px;
+		 		font-size: 12px;
+		 	}
+		 	.menu-board .start-btn{
+		 		margin: 0 auto;
+		 		width: 180px;
+		 		height: 30px;
+		 		border: none;
+		 		color: #fff;
+		 		background: #000;
+		 	}
+		 	.menu-board .start-btn:hover{
+		 		background: #777;		 		
+		 		cursor: pointer;
+		 	}
+		 	.menu-board .author{
+		 		margin-left: -200px;
+		 		margin-top: 20px;
+		 	}
+		 	.dead-board{
+		 		position: absolute;
+		 		margin-left: -150px;
+		 		padding: 20px;
+		 		top: 20%;
+		 		left: 50%;
+		 		width: 300px;
+		 		height: 200px;
+		 		box-sizing: border-box;
+		 		visibility: hidden;
+		 	}
+		 	.win-board{
+		 		position: absolute;
+		 		margin-left: -150px;
+		 		padding: 20px;
+		 		top: 20%;
+		 		left: 50%;
+		 		width: 300px;
+		 		height: 200px;
+		 		box-sizing: border-box;
+		 		visibility: hidden;
+		 	}
+		 	.dead-board .board-title{
+		 		text-align: center;
+		 		font-size: 18px;
+		 		font-weight: bold;
+		 		color: #ff0000;
+		 	}
+		 	.win-board .board-title{
+		 		text-align: center;
+		 		font-size: 18px;
+		 		font-weight: bold;
+		 		color: #ffffff;		 		
+		 	}
+		 	.dead-board .board-score{
+		 		text-align: center;
+		 		font-size: 12px;
+		 	}
+		 	.win-board .board-txt{
+		 		text-align: center;
+		 		font-size: 12px;		 		
+		 	}
+		 	.dead-board .btn{
+		 		margin: 0 auto;
+		 		display: block;
+		 		margin-bottom: 10px;
+		 		width: 180px;
+		 		height: 25px;
+		 		border: none;
+		 		background: #777;
+		 		color: #fff;
+		 		text-align: center;
+		 	}
+			.win-board .btn{
+		 		margin: 0 auto;
+		 		display: block;
+		 		margin-bottom: 10px;
+		 		width: 180px;
+		 		height: 25px;
+		 		border: none;
+		 		background: #777;
+		 		color: #fff;
+		 		text-align: center;				
+			}
+		 	.dead-board .btn:hover{
+		 		background: #cdcdcd;
+		 		color: #000;
+		 		cursor: pointer;
+		 	}
+		 	.win-board .btn:hover{
+		 		background: #cdcdcd;
+		 		color: #000;
+		 		cursor: pointer;		 		
+		 	}
+		 	.info-board {
+		 		position: absolute;
+		 		left: 5%;
+		 		top:2%;
+		 		visibility: hidden;
+		 		font-size: 12px;
+		 	}
+		 	.info-board .breath-bar{
+		 		display: inline-block;
+		 		height: 8px;
+		 		width: 80px;
+		 		background: #fff;
+		 		opacity: 0.5;
+		 	}
