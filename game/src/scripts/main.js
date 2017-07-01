@@ -1,62 +1,4 @@
-var game = new Phaser.Game(640,320, Phaser.AUTO, 'wrapper');
-
-//初始化State
-var bootState = {
-	preload: function(){
-		game.load.image('loading','asset/pic/loading.gif')
-	},
-	create: function(){
-		game.state.start('load'); 
-	}
-}
-
-//加载State
-var loadState = {
-	init: function(){
-		this.loading = game.add.image(game.world.centerX,game.world.centerY,'loading');
-		this.loading.anchor = {x:0.5,y:0.5};
-		this.loading.width = 200;
-		this.loading.height = 150;
-		this.progressText = game.add.text(game.world.centerX,game.world.centerY+30,'0%',{fill:"#fff",fontSize:"14px"});
-		this.progressText.anchor = {x:0.5,y:0.5};
-	},
-	preload: function(){
-	    game.load.tilemap('round1','asset/map.json',null,Phaser.Tilemap.TILED_JSON);
-	    game.load.image('tiles','asset/pic/tiles.png');
-	    game.load.audio('bgm','asset/bgm.wav');
-	    game.load.spritesheet('ball','asset/pic/ball.png',16,16);
-	    game.load.spritesheet('mentor','asset/pic/mentor.png',72,126);
-	    game.load.spritesheet('man', 'asset/pic/man.png', 20, 28);
-	    game.load.spritesheet('ghost','asset/pic/ghost.png',16,16);
-	    game.load.spritesheet('whelp','asset/pic/whelp.png',32,32);
-	    game.load.spritesheet('snake','asset/pic/snake.png',16,16);	
-	    game.load.spritesheet('ghostSword','asset/pic/ghostSword.png',24,16);	
-	    game.load.spritesheet('buff','asset/pic/buff.png',10,10);	
-		game.load.onFileComplete.add(function(progress){
-			loadState.progressText.text = progress + '%';
-		});
-	},
-	create: function(){
-		game.state.start('menu'); 
-	}
-}
-
-
-//菜单State
-var menuState = {
-	init: function(){
-		this.menu = document.getElementsByClassName('menu-board')[0];
-		this.menu.style.visibility = 'visible';
-	},
-	create: function(){
-		this.startBtn = document.getElementsByClassName('start-btn')[0];
-		this.startBtn.addEventListener('click',function(){
-			menuState.menu.style.display = 'none';
-			game.state.start('main');
-		});
-	}
-}
-
+import {game} from './boot';
 //游戏State
 var mainState = {
 	createPlayer: function(){
@@ -99,21 +41,21 @@ var mainState = {
 	 	this.enemy_whelp = this.createWhelp(7200,96+960);
 	},	
 	createSnake: function(x,y){
-		var snake;
+		let snake;
 		snake = game.add.sprite(x,y,'snake','',this.enemySnake);
 		game.physics.enable(snake, Phaser.Physics.ARCADE);
 		snake.animations.add('left', [0,1], 6, true);
 		return snake;
 	},
 	createGhost: function(x,y){
-		var ghost;
+		let ghost;
 		ghost = game.add.sprite(x,y,'ghost','',this.enemy);
 		game.physics.enable(ghost, Phaser.Physics.ARCADE);
 		ghost.animations.add('left', [0,1], 6, true);
 		return ghost;
 	},
 	createGhostSword: function(x,y){
-		var ghostSword;
+		let ghostSword;
 		ghostSword = game.add.sprite(x,y,'ghostSword','',this.enemy);
 		game.physics.enable(ghostSword, Phaser.Physics.ARCADE);
 		ghostSword.animations.add('left', [0,1], 6, true);
@@ -122,7 +64,7 @@ var mainState = {
 		return ghostSword;
 	},
 	createWhelp: function(x,y){
-		var whelp;
+		let whelp;
 		whelp = game.add.sprite(x,y,'whelp','',this.enemy);
 		game.physics.enable(whelp, Phaser.Physics.ARCADE);
 		whelp.animations.add('left', [0,1,2], 6, true);
@@ -133,7 +75,7 @@ var mainState = {
 		return whelp;
 	},
 	createMentor: function(x,y){
-		var mentor;
+		let mentor;
 		mentor = game.add.sprite(x,y,'mentor');
 		game.physics.enable(mentor, Phaser.Physics.ARCADE);
 		mentor.height = 42;
@@ -159,7 +101,7 @@ var mainState = {
 		this.ball15 = this.createFireBall(5792,64+960);
 	},
 	createFireBall: function(x,y){
-		var ball;
+		let ball;
 		ball = game.add.emitter(x,y,20);
 		ball.makeParticles('ball',[0,1,2],10,true,false);
 		ball.setXSpeed(0);
@@ -171,7 +113,7 @@ var mainState = {
 		return ball;
 	},
 	createBuff: function(x,y){
-		var buff;
+		let buff;
 		buff = game.add.sprite(x,y,'buff');
 		buff.height = 16;
 		buff.width = 16;
@@ -366,7 +308,7 @@ var mainState = {
 				//下一行测试用代码
 				// mainState.breath = 100;
 				//怪兽冲撞AI
-				for (var i = 0; i < this.ghostSword.length; i++) {
+				for (let i = 0; i < this.ghostSword.length; i++) {
 					if(game.physics.arcade.distanceBetween(this.player,this.ghostSword[i]) < 640){
 						game.physics.arcade.accelerateToObject(this.ghostSword[i],this.player,100);
 					}
@@ -433,8 +375,4 @@ var mainState = {
 	},
 }
 
-game.state.add('boot', bootState);  
-game.state.add('load', loadState);  
-game.state.add('menu', menuState);  
-game.state.add('main', mainState);  
-game.state.start('boot'); 
+export {mainState};
