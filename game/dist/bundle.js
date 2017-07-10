@@ -78,7 +78,7 @@ var game = new Phaser.Game(640, 320, Phaser.AUTO, 'wrapper');
 //初始化State
 var bootState = {
 	preload: function preload() {
-		game.load.image('loading', '../game/src/asset/pic/loading.gif');
+		// game.load.image('loading','../game/src/asset/pic/loading.gif')
 	},
 	create: function create() {
 		game.state.start('load');
@@ -126,10 +126,10 @@ var _boot = __webpack_require__(0);
 //加载State
 var loadState = {
 	init: function init() {
-		this.loading = _boot.game.add.image(_boot.game.world.centerX, _boot.game.world.centerY, 'loading');
-		this.loading.anchor = { x: 0.5, y: 0.5 };
-		this.loading.width = 200;
-		this.loading.height = 150;
+		// this.loading = game.add.image(game.world.centerX,game.world.centerY,'loading');
+		// this.loading.anchor = {x:0.5,y:0.5};
+		// this.loading.width = 200;
+		// this.loading.height = 150;
 		this.progressText = _boot.game.add.text(_boot.game.world.centerX, _boot.game.world.centerY + 30, '0%', { fill: "#fff", fontSize: "14px" });
 		this.progressText.anchor = { x: 0.5, y: 0.5 };
 	},
@@ -450,6 +450,33 @@ var mainState = {
 		//Physics全局物理系统
 		_boot.game.physics.startSystem(Phaser.Physics.ARCADE);
 		_boot.game.physics.arcade.gravity.y = 800;
+		//浏览器窗口失去焦点事件
+		window.addEventListener('blur', function () {
+			if (mainState.scoreTimer) {
+				clearInterval(mainState.scoreTimer);
+				mainState.scoreTimer = null;
+			}
+			if (mainState.breathTimer) {
+				clearInterval(mainState.breathTimer);
+				mainState.breathTimer = null;
+			}
+		});
+		window.addEventListener('focus', function () {
+			if (!mainState.scoreTimer) {
+				mainState.scoreTimer = setInterval(function () {
+					mainState.score++;
+					mainState.scoreBoard.innerHTML = mainState.score;
+				}, 1000);
+			}
+			if (!mainState.breathTimer) {
+				mainState.breathTimer = setInterval(function () {
+					if (mainState.breath < 100) {
+						mainState.breath++;
+					}
+					mainState.breathNum.innerHTML = mainState.breath;
+				}, 180);
+			}
+		});
 	},
 	update: function update() {
 		_boot.game.physics.arcade.collide(this.player, this.layer);
