@@ -2,10 +2,10 @@ import {game} from './boot';
 //加载State
 var loadState = {
 	init: function(){
-		this.loading = game.add.image(game.world.centerX,game.world.centerY,'loading');
-		this.loading.anchor = {x:0.5,y:0.5};
-		this.loading.width = 200;
-		this.loading.height = 150;
+		// this.loading = game.add.image(game.world.centerX,game.world.centerY,'loading');
+		// this.loading.anchor = {x:0.5,y:0.5};
+		// this.loading.width = 200;
+		// this.loading.height = 150;
 		this.progressText = game.add.text(game.world.centerX,game.world.centerY+30,'0%',{fill:"#fff",fontSize:"14px"});
 		this.progressText.anchor = {x:0.5,y:0.5};
 	},
